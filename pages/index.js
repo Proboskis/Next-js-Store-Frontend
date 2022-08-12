@@ -24,7 +24,6 @@ export default function Home() {
       </Head>
 
       <main>
-          <h1>Next JS</h1>
           <Gallery>
               {products.map((product) => (
                   <Product product={product} key={product.attributes.slug} />
