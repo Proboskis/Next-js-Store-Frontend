@@ -3,20 +3,29 @@ import {GET_PRODUCT_KEY} from '../../lib/query';
 import {useRouter} from "next/router";
 import {DetailsStyle, ProductInfo, Quantity, Buy} from "../../styles/ProductDetails";
 import {AiFillPlusCircle, AiFillMinusCircle} from "react-icons/ai";
+import {useStateContext} from "../../lib/context";
+import {useState} from "react";
 
 export default function ProductDetails() {
+    // Use State
+    const {qty, increaseQty, decreaseQty} = useStateContext();
+    console.log(qty);
+
     // Fetch Slug
     const {query} = useRouter();
     console.log(query);
+
     // Fetch Graphql
     const [results] = useQuery({
         query: GET_PRODUCT_KEY,
         variables: {slug: query.slug}
     });
     const {data, fetching, error} = results;
+
     // Check for the data coming in
     if (fetching) return <p>Loading ...</p>
     if (error) return <p>Oh no... {error.message}</p>
+
     // const products = data.products.data;
     console.log(data);
 
@@ -31,11 +40,11 @@ export default function ProductDetails() {
             <Quantity>
                 <span>Quantity</span>
                 <button>
-                    <AiFillPlusCircle />
+                    <AiFillMinusCircle  onClick={decreaseQty} />
                 </button>
-                <p>0</p>
+                <p>{qty}</p>
                 <button>
-                    <AiFillMinusCircle />
+                    <AiFillPlusCircle onClick={increaseQty} />
                 </button>
             </Quantity>
                 <Buy>Add to cart</Buy>
