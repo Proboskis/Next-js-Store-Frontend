@@ -8,12 +8,12 @@ import {useState} from "react";
 
 export default function ProductDetails() {
     // Use State
-    const {qty, increaseQty, decreaseQty} = useStateContext();
-    console.log(qty);
+    const {qty, increaseQty, decreaseQty, cartItems, onAdd} = useStateContext();
+    // console.log(qty);
 
     // Fetch Slug
     const {query} = useRouter();
-    console.log(query);
+    // console.log(query);
 
     // Fetch Graphql
     const [results] = useQuery({
@@ -27,9 +27,10 @@ export default function ProductDetails() {
     if (error) return <p>Oh no... {error.message}</p>
 
     // const products = data.products.data;
-    console.log(data);
+    // console.log(data);
 
     const {title, description, image} = data.products.data[0].attributes;
+    console.log(data.products.data[0].attributes);
 
     return(
         <DetailsStyle>
@@ -47,7 +48,7 @@ export default function ProductDetails() {
                     <AiFillPlusCircle onClick={increaseQty} />
                 </button>
             </Quantity>
-                <Buy>Add to cart</Buy>
+                <Buy onClick={() => onAdd(data.products.data[0].attributes, qty)}>Add to cart</Buy>
             </ProductInfo>
         </DetailsStyle>
     );
