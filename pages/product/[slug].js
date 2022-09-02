@@ -4,7 +4,6 @@ import {useRouter} from "next/router";
 import {DetailsStyle, ProductInfo, Quantity, Buy} from "../../styles/ProductDetails";
 import {AiFillPlusCircle, AiFillMinusCircle} from "react-icons/ai";
 import {useStateContext} from "../../lib/context";
-import {useState} from "react";
 
 export default function ProductDetails() {
     // Use State
