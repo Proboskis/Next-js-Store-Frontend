@@ -4,10 +4,11 @@ import {useRouter} from "next/router";
 import {DetailsStyle, ProductInfo, Quantity, Buy} from "../../styles/ProductDetails";
 import {AiFillPlusCircle, AiFillMinusCircle} from "react-icons/ai";
 import {useStateContext} from "../../lib/context";
+import {useEffect} from "react";
 
 export default function ProductDetails() {
     // Use State
-    const {qty, increaseQty, decreaseQty, cartItems, onAdd} = useStateContext();
+    const {qty, setQty, increaseQty, decreaseQty, cartItems, onAdd} = useStateContext();
     // console.log(qty);
 
     // Fetch Slug
@@ -21,6 +22,11 @@ export default function ProductDetails() {
     });
     const {data, fetching, error} = results;
 
+    // reset the number of items added to the cart with useEffect hook
+    useEffect(() => {
+        setQty(1)
+    }, [setQty]);
+
     // Check for the data coming in
     if (fetching) return <p>Loading ...</p>
     if (error) return <p>Oh no... {error.message}</p>
@@ -29,7 +35,7 @@ export default function ProductDetails() {
     // console.log(data);
 
     const {title, description, image} = data.products.data[0].attributes;
-    console.log(data.products.data[0].attributes);
+    // console.log(data.products.data[0].attributes);
 
     return(
         <DetailsStyle>
