@@ -32,6 +32,11 @@ export default async function handler (req, res) {
                 shipping_address_collection: {
                    allowed_countries: ['AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'HR', 'CY', 'CZ', 'DK', 'DO', 'EG', 'EE', 'FI', 'FR', 'DE', 'GR', 'HK', 'HU', 'IS', 'IN', 'ID', 'IE', 'IL', 'IT', 'JP', 'LV', 'LI', 'LT', 'LU', 'MT', 'MX', 'NL', 'NZ', 'NO', 'PY', 'PE', 'PL', 'PT', 'RO', 'SG', 'SK', 'SI', 'ES', 'SE', 'CH', 'TH', 'TT', 'AE', 'GB', 'US', 'UY']
                 },
+                allow_promotion_codes: true,
+                shipping_options: [
+                    {shipping_rate: 'shr_1LhBPTCn0MQXbsg2RHzq4SyB'},
+                    {shipping_rate: 'shr_1LhBgUCn0MQXbsg2VrfLwD6y'}
+                ],
                 line_items: lineItems,
                 // Redirect to the successful or failed page
                 success_url: `${req.headers.origin}/success`,
