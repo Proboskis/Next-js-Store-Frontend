@@ -55,6 +55,9 @@ export default function Success({order}) {
 
 const Wrapper = styled.div`
     margin: 5rem 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center
 `;
 
 const Card = styled(motion.div)`
@@ -63,16 +66,25 @@ const Card = styled(motion.div)`
     align-items: center;
     background: white;
     border-radius: 2rem;
-    padding: 3rem 0rem;
+    padding: 3rem 3rem;
     width: 50%;
+    h1 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
     h2 {
-        margin-bottom: 1rem 0rem;
+        color: var(--secondary);
+        font-weight: 500
+        margin-bottom: 0.5rem;
     }
     button {
         color: white;
         background: var(--primary);
         font-size: 1.2rem;
         font-weight: 500;
+        padding: 1rem 2rem;
+        margin-top: 2rem;
+        cursor: pointer;
     }
     padding: 1rem 2rem;
     cursor: pointer;
@@ -92,6 +104,6 @@ const OrderInfo = styled.div`
 `;
 
 const InfoWrapper = styled.div`
+    margin-top: 2rem;
     display: flex;
-    margin: 2rem 0rem;
 `;
