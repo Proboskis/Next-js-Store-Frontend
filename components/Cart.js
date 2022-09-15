@@ -1,7 +1,7 @@
 import {useStateContext} from "../lib/context";
 import {CartWrapper, CartStyle, Card, CardInfo, EmptyStyle, Checkout, Cards} from "../styles/CartStyles";
 import {FaShoppingCart} from 'react-icons/fa';
-import {AiFillMinusCircle, AiFillPlusCircle} from "react-icons/ai"
+import {AiFillMinusCircle, AiFillPlusCircle} from "react-icons/fa"
 import {Quantity} from "../styles/ProductDetails";
 import getStripe from "../lib/getStripe";
 
