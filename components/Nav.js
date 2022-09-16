@@ -11,7 +11,7 @@ const {AnimatePresence, motion} = require("framer-motion");
 export default function Nav() {
     const {showCart, setShowCart, totalQuantities} = useStateContext();
     const {user, error, isLoading} = useUser();
-    console.log(user);
+    // console.log(user);
     return (
         <NavStyles>
             <Link href={'/'}>Styled.</Link>
