@@ -1,10 +1,16 @@
 import Stripe from 'stripe';
+import {getSession} from "@auth0/nextjs-auth0";
 
 const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
 
 export default async function handler (req, res) {
+    const session = getSession(req, res);
+    const user = session?.user;
+    // console.log(user);
+    const stripeId = user['http://localhost:3000/stripe_customer_id'];
+
     if (req.method === "POST") {
-        console.log(req.body);
+        // console.log(req.body);
         try {
             const lineItems = [];
             for(let item of req.body) {
@@ -28,6 +34,7 @@ export default async function handler (req, res) {
             const session = await stripe.checkout.sessions.create({
                 submit_type: 'pay',
                 mode: 'payment',
+                customer: stripeId,
                 payment_method_types: ['card'],
                 shipping_address_collection: {
                    allowed_countries: ['AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'HR', 'CY', 'CZ', 'DK', 'DO', 'EG', 'EE', 'FI', 'FR', 'DE', 'GR', 'HK', 'HU', 'IS', 'IN', 'ID', 'IE', 'IL', 'IT', 'JP', 'LV', 'LI', 'LT', 'LU', 'MT', 'MX', 'NL', 'NZ', 'NO', 'PY', 'PE', 'PL', 'PT', 'RO', 'SG', 'SK', 'SI', 'ES', 'SE', 'CH', 'TH', 'TT', 'AE', 'GB', 'US', 'UY']
